@@ -10,11 +10,11 @@ const userSchema = new mongoose.Schema(
       minLength: [4, "First Name must not contain more than 14 characters"],
     },
     lastname: {
-      type: String,
+      type:String,
       required: [true, "Last Name is required"],
     },
     email: {
-      type: String,
+      type:String,
       unique: true,
       required: [true, "Email is required"],
       match: [
@@ -28,21 +28,29 @@ const userSchema = new mongoose.Schema(
       minLength: [10, "Contact must contain 10 characters"],
       maxLength: [10, "Contact must contain 10 characters"],
     },
-    city: String,
-    location: String,
-    address: String,
+    city:{
+        type: String
+    },
+    address:{
+        type: String,
+        
+    },
     resetPasswordToken: {
       type: String,
       default: "0",
     },
     cart: [
       {
-        type: mongoose.Schema.Types.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         ref: "dish",
       },
     ],
 
-    password: String,
+    password:{
+        type: String,
+        select:false,
+        required:[true,"password is required"]
+    },
   },
   { timestamps: true }
 );
@@ -55,6 +63,10 @@ userSchema.pre("save", function () {
   let salt = bcrypt.genSaltSync(10);
   this.password = bcrypt.hashSync(this.password, salt);
 });
+
+userSchema.methods.comparepassword = function(password){
+  return bcrypt.compareSync(password,this.password)
+}
 
 userSchema.methods.getjwttoken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
