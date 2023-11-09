@@ -1,8 +1,8 @@
 require('dotenv').config({path:"./.env"});
 const express = require('express');
 const app = express();
+app.use(require('cors')({ origin:true,credentials:true }));
 
-app.use(require('cors')({ origin:true,Credential:true }))
 
 require('./models/database.js').connectDatabase();
 //loger
