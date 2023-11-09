@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { home, userRegister, userLogin, currentUser, } = require("../controllers/indexController");
-const { isAuthenticated } = require("../middlewares/Auth");
+const { isAuthenticated } = require("../middlewares/auth");
 
 //home
 router.get("/", home);
