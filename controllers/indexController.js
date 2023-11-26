@@ -41,8 +41,12 @@ exports.userLogin = catchAsyncErrors(async(req,res,next)=>{
 })
 
 
+//Add item to cart
 exports.addItemInMenu = catchAsyncErrors(async(req,res,next)=>{
+
   
   //sajjan made some chaneges of menu 
+
+
 })
    
