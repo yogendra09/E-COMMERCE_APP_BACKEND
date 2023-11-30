@@ -25,7 +25,7 @@ app.use(cookieparser());
 
 
 app.use('/',require('./routes/indexRoutes.js'));
-app.use('/hotel',require('./routes/hotelRoutes.js'));
+app.use('/hotel',require('./routes/sellerRoutes.js'));
 
 
 const ErrorHandler = require('./utils/ErrorHandler.js');
